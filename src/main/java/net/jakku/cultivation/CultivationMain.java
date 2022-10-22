@@ -1,6 +1,7 @@
 package net.jakku.cultivation;
 
 import com.mojang.logging.LogUtils;
+import net.jakku.cultivation.item.CultivationItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -38,6 +39,7 @@ public class CultivationMain
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        CultivationItems.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -49,7 +51,7 @@ public class CultivationMain
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ClientModEvents
     {
         @SubscribeEvent
